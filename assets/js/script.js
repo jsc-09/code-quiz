@@ -20,6 +20,9 @@ let scoreContainer = document.querySelector('.score-container');
 let timeLeft;
 let timeInterval;
 let timerDisplay = document.querySelector(".timer-display")
+let highscoreForm = document.querySelector('#highscore-form');
+let highscoreList = document.querySelector('#highscore-list');
+let nameInput = document.querySelector('#name-input');
 
 startButton.addEventListener("click", startGame) 
 /*Array.from(answerButtonEl.children).forEach(button => {
@@ -46,8 +49,6 @@ function startGame() {
     showQuestion();
     countdown();
 }
-
-
 
 function showQuestion(){
     //show question
@@ -106,12 +107,28 @@ function selectAnswer(event) {
         reset();
         questionContainer.classList.add('hide');
         scoreContainer.classList.remove('hide');
-        //display score-container
+        //displays score-container
     }
   
 }
+/*
+highscoreForm.on('submit', function(submit){
+    submit.preventDefault();
+    highscoreList.append(('<li>').text(nameInput.val()));
+    nameInput.val("");
+})
+*/
 
 
+//SCOREBOARD + NAME INPUT
+
+/*function displayScoreBoard () {
+    //when last question is CLICKED, show scoreboard
+    scoreContainer.classList.remove('hide');
+    scoreContainer.textContent = "Your Score is: TIME" //score is time left on timer
+    scoreContainer.classList.add('answer')
+}
+*/
 //Each question is an OBJECT
 let questions = [
     {
