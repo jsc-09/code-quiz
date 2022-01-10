@@ -17,18 +17,20 @@ let answerButtonEl = document.getElementById('answer-buttons');
 let currentQuestion = 0;
 let correctWrong = document.getElementById('correct-wrong');
 let scoreContainer = document.querySelector('.score-container');
+let timeLeft;
 let timeInterval;
-let timerDiplay = document.querySelector("timer-display")
+let timerDisplay = document.querySelector(".timer-display")
 
 startButton.addEventListener("click", startGame) 
 /*Array.from(answerButtonEl.children).forEach(button => {
     button.addEventListener('click',selectAnswer)
 });*/
 function countdown() {
-    let timeLeft = 100;
+    timeLeft = 100;
+    //set timer countdown
     timeInterval = setInterval(function (){
         timeLeft--;
-    timerDisplay.textContent = timeLeft;
+        timerDisplay.textContent = timeLeft;
     }, 1000);
 }
 
