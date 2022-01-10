@@ -1,0 +1,57 @@
+body {
+    font-family: 'Maven Pro', sans-serif;
+}
+
+h1{
+    font-weight:500;
+    font-size: 200%;
+}
+
+h2 {
+    font-size: 160%;
+}
+
+h3 {
+    font-size: 125%;
+    color:rgb(193, 99, 140)
+}
+
+
+.hide {
+    display: none;
+}
+
+.display {
+    display: flex;
+}
+
+button {
+    font-family: 'Maven Pro', sans-serif;font-weight: 400;
+    font-size: 1.5em;
+    background-color: rgb(193, 99, 140);
+    border-radius: 10px;
+    border: 0px; 
+    padding: 15px 30px;
+    margin-top:15px;
+    margin-right: 10px;
+    text-align: left;
+    display: block;
+}
+
+button:hover {
+    background-color: rgb(235, 171, 199) ;
+}
+
+#question {
+    font-size: 160%;
+}
+
+/*.controls {
+    font-family: 'Maven Pro', sans-serif;font-weight: 400;
+    font-size: 1.5em;
+    background-color: rgb(193, 99, 140);
+    border-radius: 10px;
+    border: 0px; 
+    padding: 15px 30px;
+    justify-content: space-between;
+}
