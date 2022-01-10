@@ -13,7 +13,13 @@ h2 {
 
 h3 {
     font-size: 125%;
-    color:rgb(193, 99, 140)
+    color:rgb(193, 99, 140);
+}
+
+h4 {
+    font-size: 125%;
+    color:rgb(193, 99, 140);
+    font-style: italic;
 }
 
 
@@ -23,6 +29,13 @@ h3 {
 
 .display {
     display: flex;
+}
+
+.answer {
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 150%;
+    color:rgb(193, 99, 140);
+    font-style: italic;
 }
 
 button {
