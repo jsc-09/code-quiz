@@ -32,6 +32,8 @@ function countdown() {
         timeLeft--;
         timerDisplay.textContent = timeLeft;
     }, 1000);
+
+    //timer stop for last question answered
 }
 
 console.log(countdown)
@@ -85,11 +87,13 @@ function selectAnswer(event) {
     console.log(event.target.dataset.correct)
 
     if (event.target.dataset.correct) {
-        correctWrong.textContent = "Correct!"
+        correctWrong.textContent = "Correct!";
+        correctWrong.classList.add('answer')
     }
 //if wrong, display "Wrong!"
     else {
         correctWrong.textContent = "Wrong!";
+        correctWrong.classList.add('answer')
         //subtract 10 seconds 
     }
 
@@ -111,48 +115,48 @@ function selectAnswer(event) {
 //Each question is an OBJECT
 let questions = [
     {
-        question: "What animal is pink?",
+        question: "What is a not common data type?",
         answers: [
-            {text: 'flamingo', correct: true},
-            {text: 'fox', correct: false},
-            {text: 'elephant', correct: false},
-            {text: 'horse', correct: false}
+            {text: 'function', correct: true},
+            {text: 'string', correct: false},
+            {text: 'number', correct: false},
+            {text: 'boolean', correct: false}
         ]
     },
     {
-        question: "What animal has stripes?",
+        question: "Javascript is a _____-side programming language.",
         answers: [
-            {text: 'monkey', correct: false},
-            {text: 'lion', correct: false},
-            {text: 'tiger', correct: true},
-            {text: 'rhino', correct: false}
+            {text: 'server', correct: false},
+            {text: 'client', correct: false},
+            {text: 'both', correct: true},
+            {text: 'none', correct: false}
         ]
     },
     {
-        question: "What animal has big ears?",
+        question: "How do you find the minimum of x and y using JavaScript?",
         answers: [
-            {text: 'polar bear', correct: false},
-            {text: 'penguin', correct: false},
-            {text: 'elephant', correct: true},
-            {text: 'turtle', correct: false}
+            {text: 'min(x,y)', correct: false},
+            {text: 'Math.min(xy)', correct: false},
+            {text: 'Math.min(x,y)', correct: true},
+            {text: 'min(xy)', correct: false}
         ]
     },
     {
-        question: "What animals has a long neck?",
+        question: "Which event occurs when the user clicks on an HTML element?",
         answers: [
-            {text: 'monkey', correct: false},
-            {text: 'alligator', correct: false},
-            {text: 'leopard', correct: false},
-            {text: 'giraffe', correct: true}
+            {text: 'onchange', correct: false},
+            {text: 'onmouseover', correct: false},
+            {text: 'onmouseclick', correct: false},
+            {text: 'onclick', correct: true}
         ]
     },
     {
-        question: "What is the fastest animal on earth?",
+        question: "Inside which HTML element do we put the Javascript",
         answers: [
-            {text: 'manatee', correct: false},
-            {text: 'cheetah', correct: true},
-            {text: 'koala', correct: false},
-            {text: 'sloth', correct: false}
+            {text: '<scripting>', correct: false},
+            {text: '<script>', correct: true},
+            {text: '<js>', correct: false},
+            {text: '<javascript>', correct: false}
         ]
     }
 ]
