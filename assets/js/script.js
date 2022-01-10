@@ -9,20 +9,30 @@
 //SUBMIT name will bring a HIGHSCORE list. with options to START OVER or CLEAR SCORES
 //NAVIGATION BAR will include View Highscores option and Display Timer
 
-let introContainer = document.querySelector(".intro-container")
-let startButton = document.querySelector(".start-btn")
-let questionContainer = document.querySelector('.question-container')
-let questionEl = document.getElementById('question')
-let answerButtonEl = document.getElementById('answer-buttons')
-let currentQuestion = 0
-let correctWrong = document.getElementById('correct-wrong')
-let scoreContainer = document.querySelector('.score-container')
-
+let introContainer = document.querySelector(".intro-container");
+let startButton = document.querySelector(".start-btn");
+let questionContainer = document.querySelector('.question-container');
+let questionEl = document.getElementById('question');
+let answerButtonEl = document.getElementById('answer-buttons');
+let currentQuestion = 0;
+let correctWrong = document.getElementById('correct-wrong');
+let scoreContainer = document.querySelector('.score-container');
+let timeInterval;
+let timerDiplay = document.querySelector("timer-display")
 
 startButton.addEventListener("click", startGame) 
 /*Array.from(answerButtonEl.children).forEach(button => {
     button.addEventListener('click',selectAnswer)
 });*/
+function countdown() {
+    let timeLeft = 100;
+    timeInterval = setInterval(function (){
+        timeLeft--;
+    timerDisplay.textContent = timeLeft;
+    }, 1000);
+}
+
+console.log(countdown)
 
 function startGame() {
     //console.log("Game started!");
@@ -30,7 +40,10 @@ function startGame() {
     questionContainer.classList.remove('hide');
     reset();
     showQuestion();
+    countdown();
 }
+
+
 
 function showQuestion(){
     //show question
