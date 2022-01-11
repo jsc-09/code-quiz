@@ -59,6 +59,7 @@ function showIntro() {
     reset();
 }
 
+//start game
 function startGame() {
     //console.log("Game started!");
     clearAllContainer()
@@ -68,6 +69,7 @@ function startGame() {
     countdown();
     currentQuestion = 0;
 }
+
 
 function showQuestion(){
     //show question
@@ -83,13 +85,8 @@ function showQuestion(){
         button.addEventListener('click', selectAnswer)
         answerButtonEl.appendChild(button)
     });
-    
-/* Array.from(answerButtonEl.children).forEach(button => {
-        button.innerText = questions[currentQuestion].answers[i].text;
-        i++;
-    })*/
 }
-
+//reset buttons
 function reset() {
     while (answerButtonEl.firstChild) {
         answerButtonEl.removeChild(answerButtonEl.firstChild)
@@ -121,10 +118,10 @@ function selectAnswer(event) {
         showQuestion()
     }  
     else {
+        //show final score
         reset();
         clearInterval(timeInterval);
         showFinalScore();
-        //displays score-container without restart/clear button
     }
 }
 //SCOREBOARD + NAME INPUT
@@ -134,19 +131,20 @@ function showFinalScore(){
     scoreContainer.classList.remove('hide');
     submitButton.addEventListener("click", nameSumbit)
 }
+//submit name + score
 function nameSumbit(submit) {
     submit.preventDefault();
     let nameInput = $('input[name="name-input').val();
     console.log(nameInput);
     console.log(timeLeft);
-    showHighScoreList()
+    //store name and score in local storage
     const scoreItem = {
         name: nameInput,
         score: timeLeft
     }
     highScores.push(scoreItem);
     localStorage.setItem('highScores', JSON.stringify(highScores));
-
+    showHighScoreList()
 }
 //add event listener for View Highscore 
 
@@ -154,14 +152,30 @@ function showHighScoreList() {
     clearAllContainer()
     highscoreContainer.classList.remove('hide');
     let storedScores = JSON.parse(localStorage.getItem("highScores"));
+    console.log("showHighScoreList(): " + storedScores.length)
+    resetScores();
     storedScores.forEach(s => {
-        console.log(s.name)
-        console.log(s.score)
+        console.log("showHighScoreList(): " + s.name)
+        console.log("showHighScoreList(): " + s.score)
         let li = document.createElement("li");
         li.textContent = s.name + "..." +s.score;
         highscoreList.appendChild(li)
     })
     goHomeBtn.addEventListener("click", showIntro)
+    clearScoreBtn.addEventListener("click", clearScores)
+}
+
+//reset high scores
+function clearScores() {
+    highScores = []
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+    showHighScoreList()
+}
+
+function resetScores() {
+    while (highscoreList.firstChild) {
+        highscoreList.removeChild(highscoreList.firstChild)
+    };
 }
 
 function init() {
