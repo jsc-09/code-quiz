@@ -12,23 +12,36 @@
 let introContainer = document.querySelector(".intro-container");
 let startButton = document.querySelector(".start-btn");
 let questionContainer = document.querySelector('.question-container');
-let questionEl = document.getElementById('question');
-let answerButtonEl = document.getElementById('answer-buttons');
-let currentQuestion = 0;
-let correctWrong = document.getElementById('correct-wrong');
 let scoreContainer = document.querySelector('.score-container');
-let timeLeft;
-let timeInterval;
 let timerDisplay = document.querySelector(".timer-display")
 let highscoreForm = document.querySelector('#highscore-form');
 let highscoreList = document.querySelector('#highscore-list');
 let nameInput = document.querySelector('#name-input');
 let restartContainer = document.querySelector('.restart-container');
+let submitButton = document.querySelector('.submit-btn')
+let highscoreContainer = document.querySelector('.high-score-container')
+
+let questionEl = document.getElementById('question');
+let answerButtonEl = document.getElementById('answer-buttons');
+let correctWrong = document.getElementById('correct-wrong');
+let finalScore = document.getElementById('final-score');
+let goHomeBtn = document.getElementById('go-home');
+let clearScoreBtn = document.getElementById('clear-score');
+let viewHighScoreLink = document.getElementById('view-high-score');
+
+let timeLeft;
+let timeInterval;
+let currentQuestion = 0;
+
+let highScores = []
 
 startButton.addEventListener("click", startGame) 
 /*Array.from(answerButtonEl.children).forEach(button => {
     button.addEventListener('click',selectAnswer)
 });*/
+
+viewHighScoreLink.addEventListener("click", showHighScoreList );
+
 function countdown() {
     timeLeft = 100;
     //set timer countdown
@@ -36,19 +49,24 @@ function countdown() {
         timeLeft--;
         timerDisplay.textContent = timeLeft;
     }, 1000);
-
-    //timer stop for last question answered
 }
 
 console.log(countdown)
 
+function showIntro() {
+    clearAllContainer();
+    introContainer.classList.remove('hide')
+    reset();
+}
+
 function startGame() {
     //console.log("Game started!");
-    introContainer.classList.add('hide');
+    clearAllContainer()
     questionContainer.classList.remove('hide');
     reset();
     showQuestion();
     countdown();
+    currentQuestion = 0;
 }
 
 function showQuestion(){
@@ -75,10 +93,8 @@ function showQuestion(){
 function reset() {
     while (answerButtonEl.firstChild) {
         answerButtonEl.removeChild(answerButtonEl.firstChild)
-    }
+    };
 }
-
-
 
 function selectAnswer(event) {
 //select answer
@@ -96,7 +112,7 @@ function selectAnswer(event) {
     else {
         correctWrong.textContent = "Wrong!";
         correctWrong.classList.add('answer')
-        //subtract 10 seconds 
+        timeLeft = timeLeft-10;
     }
 
     if (currentQuestion < questions.length-1) {
@@ -106,30 +122,43 @@ function selectAnswer(event) {
     }  
     else {
         reset();
-        questionContainer.classList.add('hide');
-        scoreContainer.classList.remove('hide');
-        restartContainer.classList.add('hide')
+        clearInterval(timeInterval);
+        showFinalScore();
         //displays score-container without restart/clear button
     }
-  
 }
-
 //SCOREBOARD + NAME INPUT
-
+function showFinalScore(){
+    finalScore.textContent = 'Your final score:' + timeLeft;
+    clearAllContainer()
+    scoreContainer.classList.remove('hide');
+    submitButton.addEventListener("click", nameSumbit)
+}
 function nameSumbit(submit) {
     submit.preventDefault();
     let nameInput = $('input[name="name-input').val();
-  //  highscoreList.textContent = nameInput;
-    highscoreList.appendChild('<li>' + nameInput + '<li>');
-
+    console.log(nameInput);
+    console.log(timeLeft);
+    showHighScoreList()
+    //highscoreList.appendChild('<li>' + nameInput + '<li>');
     //display restart container
-
 }
-//add event listener for submit button
-
 //add event listener for View Highscore 
 
 
+
+function showHighScoreList() {
+    clearAllContainer()
+    highscoreContainer.classList.remove('hide');
+    goHomeBtn.addEventListener("click", showIntro)
+}
+
+function clearAllContainer() {
+    introContainer.classList.add('hide');
+    questionContainer.classList.add('hide');
+    scoreContainer.classList.add('hide');
+    highscoreContainer.classList.add('hide')
+}
 
 //Each question is an OBJECT
 let questions = [
