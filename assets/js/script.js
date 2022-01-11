@@ -108,6 +108,7 @@ function selectAnswer(event) {
 //if wrong, display "Wrong!"
     else {
         correctWrong.textContent = "Wrong!";
+        
         correctWrong.classList.add('answer')
         timeLeft = timeLeft-10;
     }

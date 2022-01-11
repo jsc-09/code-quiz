@@ -8,11 +8,12 @@ h1{
 }
 
 h2 {
-    font-size: 160%;
+    font-size: 175%;
+    font-weight: 500;
 }
 
 h3 {
-    font-size: 125%;
+    font-size: 160%;
     color:rgb(193, 99, 140);
 }
 
@@ -22,6 +23,13 @@ h4 {
     font-style: italic;
 }
 
+p {
+    font-size: 125%;
+}
+
+.container {
+    margin-top: 50px;;
+}
 
 .hide {
     display: none;
@@ -36,15 +44,17 @@ h4 {
     font-size: 150%;
     color:rgb(193, 99, 140);
     font-style: italic;
+    padding-top: 5px;
 }
 
 button {
-    font-family: 'Maven Pro', sans-serif;font-weight: 400;
+    font-family: 'Maven Pro', sans-serif;
+    font-weight: 400;
     font-size: 1.5em;
     background-color: rgb(193, 99, 140);
     border-radius: 10px;
     border: 0px; 
-    padding: 15px 30px;
+    padding: 10px 20px;
     margin-top:15px;
     margin-right: 10px;
     text-align: left;
@@ -57,14 +67,15 @@ button:hover {
 
 #question {
     font-size: 160%;
+    font-weight: 500;
 }
 
-/*.controls {
-    font-family: 'Maven Pro', sans-serif;font-weight: 400;
-    font-size: 1.5em;
-    background-color: rgb(193, 99, 140);
-    border-radius: 10px;
-    border: 0px; 
-    padding: 15px 30px;
-    justify-content: space-between;
+ul li {
+    font-family: 'Maven Pro', sans-serif;
+    font-weight: 400;
+    font-size: 150%;
+    list-style: none;
+    background-color: rgb(235, 171, 199) ;
+    margin: 10px;
+    padding: 10px;
 }
