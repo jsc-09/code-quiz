@@ -35,13 +35,12 @@ let currentQuestion = 0;
 
 let highScores = []
 
+//Start Game Button
 startButton.addEventListener("click", startGame) 
-/*Array.from(answerButtonEl.children).forEach(button => {
-    button.addEventListener('click',selectAnswer)
-});*/
 
 viewHighScoreLink.addEventListener("click", showHighScoreList );
 
+//Countdown Timer 
 function countdown() {
     timeLeft = 100;
     //set timer countdown
@@ -53,6 +52,7 @@ function countdown() {
 
 console.log(countdown)
 
+//Intro Slide to Start Game
 function showIntro() {
     clearAllContainer();
     introContainer.classList.remove('hide')
@@ -140,17 +140,35 @@ function nameSumbit(submit) {
     console.log(nameInput);
     console.log(timeLeft);
     showHighScoreList()
-    //highscoreList.appendChild('<li>' + nameInput + '<li>');
-    //display restart container
+    const scoreItem = {
+        name: nameInput,
+        score: timeLeft
+    }
+    highScores.push(scoreItem);
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+
 }
 //add event listener for View Highscore 
-
-
 
 function showHighScoreList() {
     clearAllContainer()
     highscoreContainer.classList.remove('hide');
+    let storedScores = JSON.parse(localStorage.getItem("highScores"));
+    storedScores.forEach(s => {
+        console.log(s.name)
+        console.log(s.score)
+        let li = document.createElement("li");
+        li.textContent = s.name + "..." +s.score;
+        highscoreList.appendChild(li)
+    })
     goHomeBtn.addEventListener("click", showIntro)
+}
+
+function init() {
+    let storedScores = JSON.parse(localStorage.getItem("highScores"));
+    if (storedScores !==null) {
+        highScores = storedScores;
+    }
 }
 
 function clearAllContainer() {
@@ -208,3 +226,5 @@ let questions = [
         ]
     }
 ]
+
+init()
